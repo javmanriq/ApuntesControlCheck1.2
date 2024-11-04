@@ -5,6 +5,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.samples.petclinic.pet.Pet;
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,9 +16,20 @@ import lombok.Setter;
 @Setter
 public class InsuranceDTO {
     Integer id;
+
+    @NotNull
+    @Size(min=3,max=50)
+    @Column(unique = true)
     String name;
+
+    @NotNull
+    @Min(0)
     Double price;
+
     List<String> pets;
+
+    public InsuranceDTO() {
+    }
 
     public InsuranceDTO(Insurance i) {
         this.id = i.getId();

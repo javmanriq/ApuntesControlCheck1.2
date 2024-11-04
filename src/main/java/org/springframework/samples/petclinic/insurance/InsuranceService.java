@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.insurance;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.pet.Pet;
@@ -33,9 +34,11 @@ public class InsuranceService {
         return repo.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Insurance getInsurance(Integer id) {
         // TODO: Change this!
-        return null;
+        Optional<Insurance> i = repo.findById(id);
+        return i.isEmpty() ? null : i.get();
     }
 
     @Transactional
