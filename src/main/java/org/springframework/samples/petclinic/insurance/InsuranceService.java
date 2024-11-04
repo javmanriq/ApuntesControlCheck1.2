@@ -24,6 +24,12 @@ public class InsuranceService {
     @Transactional
     public Insurance save(Insurance i) throws UnfeaseibleInsuranceModificationException {
         // TODO: Change this!
+        Insurance oldInsurance = getInsurance(i.getId());
+        if (oldInsurance != null) {
+            if(i.getPrice() > 1.7 *oldInsurance.getPrice() || i.getPrice() < 0.3 * oldInsurance.getPrice()){
+                throw new UnfeaseibleInsuranceModificationException();
+            }
+        }
         repo.save(i);
         return i;
     }
