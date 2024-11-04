@@ -48,8 +48,9 @@ public class InsuranceService {
         return null;
     }
 
+    @Transactional
     public List<Insurance> getInsurancesBetween(Double min, Double max) {
         // TODO: Change this!
-        return null; //repo.findInsurances(min, max);
+        return repo.findInsurancesBetween(min,max); //repo.findInsurances(min, max);
     }
 }
