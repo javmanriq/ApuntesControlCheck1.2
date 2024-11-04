@@ -57,6 +57,9 @@ public interface PetRepository extends CrudRepository<Pet, Integer> {
 	@Query("SELECT NEW MAP(p.type.name as type, cast(COUNT(p) as string) as pets) FROM Pet p GROUP BY p.type")
 	public List<Map<String, String>> countPetsGroupedByType();
 
+	@Query("SELECT p FROM Pet p WHERE p.name = :name")
+	Pet findPetByName(String name);
+
 
 
 }

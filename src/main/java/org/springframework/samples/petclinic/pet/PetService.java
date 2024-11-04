@@ -34,6 +34,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PetService {
 
+	@Autowired
+	private PetRepository petRespository;
+
 	private final Integer BASIC_LIMIT = 2;
 	private final Integer GOLD_LIMIT = 4;
 	private final Integer PLATINUM_LIMIT = 7;
@@ -156,9 +159,11 @@ public class PetService {
 		return unsortedPetsByType;
 	}
 
+	@Transactional(readOnly = true)
 	public Pet getPetByName(String petName) {
         // TODO: Change this!
-        return null;
+		Pet pet = petRespository.findPetByName(petName);
+        return pet;
     }
 }
 

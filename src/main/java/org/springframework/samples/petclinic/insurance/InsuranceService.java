@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.insurance;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.pet.Pet;
 import org.springframework.samples.petclinic.pet.PetService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,8 +38,13 @@ public class InsuranceService {
         return null;
     }
 
+    @Transactional
     public Insurance getInsuranceOfPet(String petName) {
         // TODO: Change this!
+        Pet pet = petService.getPetByName(petName);
+        if (pet != null) {
+            return pet.getInsurance();
+        }
         return null;
     }
 
