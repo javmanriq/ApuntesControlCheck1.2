@@ -63,7 +63,8 @@ public class Pet extends NamedEntity {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	protected Owner owner;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
 }

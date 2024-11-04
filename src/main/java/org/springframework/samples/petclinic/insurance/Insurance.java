@@ -7,6 +7,7 @@ import org.springframework.samples.petclinic.pet.Pet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -29,6 +30,6 @@ public class Insurance extends BaseEntity {
     Double price;
     
 
-    @Transient
+    @OneToMany(mappedBy = "insurance")
     List<Pet> pets;
 }
