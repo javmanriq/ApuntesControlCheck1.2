@@ -29,6 +29,13 @@ public class InsuranceController {
         is.save(i);
         return i;
     }
-    
 
+    @GetMapping("/{id}")
+    public InsuranceDTO getInsurance(@PathVariable("id") Integer id) {
+    Insurance i = is.getInsurance(id);
+    if(i == null){
+        throw new ResourceNotFoundException("No se ha podido encontrar el seguro con id: " + id);
+    }
+    return new InsuranceDTO(i);
+    }
 }
