@@ -2,11 +2,15 @@ package org.springframework.samples.petclinic.insurance;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.pet.PetService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Service
 public class InsuranceService {
     
+    @Autowired
     private InsuranceRepository repo;
     private PetService petService;
 
@@ -15,14 +19,17 @@ public class InsuranceService {
         this.petService = petService;
     }
 
+    @Transactional
     public Insurance save(Insurance i) throws UnfeaseibleInsuranceModificationException {
         // TODO: Change this!
-        return null;
+        repo.save(i);
+        return i;
     }
     
+    @Transactional(readOnly = true)
     public List<Insurance> getAll() {
         // TODO: Change this!
-        return null;
+        return repo.findAll();
     }
 
     public Insurance getInsurance(Integer id) {
